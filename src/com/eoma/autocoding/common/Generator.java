@@ -1,7 +1,5 @@
-package com.eoma.autocoding;
+package com.eoma.autocoding.common;
 
-import com.eoma.autocoding.common.Column;
-import com.eoma.autocoding.common.Table;
 import com.eoma.autocoding.utils.CamelCaseUtils;
 import com.eoma.autocoding.utils.FileHelper;
 import freemarker.template.Configuration;
@@ -15,28 +13,22 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ *
+ * @author liujp
+ */
 public class Generator {
+
 	private Logger logger = Logger.getLogger(this.getClass());
-	private Properties properties = null;
-	
-	
-	public static void main(String[] args) throws Exception{
-		Generator g = new Generator();
-		g.gen("common_tag","标签","","liu jian pei");
-		System.out.println("模版文件生成完毕……");
-	}
+	private Properties properties;
 
-
-	
-	
-	
 	public Generator() throws Exception{
 		properties = new Properties();
 		String fileDir = this.getClass().getClassLoader().getResource("generator.xml").getFile();
 		properties.loadFromXML(new FileInputStream(fileDir));
 	}
 
-	public Table parseTable(String tableName) throws Exception{
+	private Table parseTable(String tableName) throws Exception{
 		String driverName = properties.getProperty("jdbc.driver");
 		String userName = properties.getProperty("jdbc.username");
 		String userPwd = properties.getProperty("jdbc.password");
