@@ -1,0 +1,1 @@
+# mybatis xml及entity自动生成组件
